@@ -1,28 +1,38 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <router-view />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+// import ShareList from '@/components/ShareList'
 export default {
   name: 'App',
+  data () {
+    return {
+      shares: [
+        {id: 1, title: 'Tesla', ticker: 'TSLA'},
+        {id: 2, title: 'Yandex', ticker: 'YNDX'},
+        {id: 3, title: 'Yandex', ticker: 'YNDXD'},
+      ]
+    }
+  },
   components: {
-    HelloWorld
+    // ShareList
   }
 }
 </script>
 
 <style>
+@import './assets/styles/bootstrap.min.css';
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  margin: 0 auto;
+  max-width: 1024px;
+}
+html {
+  font-size: 20px;
 }
 </style>
