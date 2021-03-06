@@ -8,10 +8,18 @@
 <script>
 import ShareItem from '@/components/ShareItem'
 export default {
-  props: ['shares'],
   components: {
     ShareItem
-  }
+  },
+  data () {
+    return {
+      shares: [
+        {id: 1, title: 'Tesla', ticker: 'TSLA'},
+        {id: 2, title: 'Yandex', ticker: 'YNDX'},
+        {id: 3, title: 'Yandex', ticker: 'YNDXD'},
+      ]
+    }
+  },
 }
 </script>
 

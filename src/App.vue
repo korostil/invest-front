@@ -8,15 +8,7 @@
 // import ShareList from '@/components/ShareList'
 export default {
   name: 'App',
-  data () {
-    return {
-      shares: [
-        {id: 1, title: 'Tesla', ticker: 'TSLA'},
-        {id: 2, title: 'Yandex', ticker: 'YNDX'},
-        {id: 3, title: 'Yandex', ticker: 'YNDXD'},
-      ]
-    }
-  },
+
   components: {
     // ShareList
   }
