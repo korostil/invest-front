@@ -1,30 +1,25 @@
-const ShareList = () => import("@/components/ShareList")
-const Share = () => import("@/components/Share")
-const Home = () => import("@/views/Home")
-
 const routes = [
     {
-            path: '/share',
-            component: ShareList,
-            name: 'share',
-            children: [
-                {
-                    path: '/share/:ticker',
-                    name: 'share',
-                    component: Share,
-                    props: true,
-                }
-            ]
-        },
-        {
-            path: '',
-            component: Home
-        },
-        {
-            path: "/page-not-found",
-            alias: '*',
-            component: { render: (h) => h("div", ["404! Page Not Found!"]) },
-        },
+        path: '/share',
+        component: () => import("@/views/Shares"),
+        name: 'list of shares'
+    },
+    {
+        path: '/share/:ticker',
+        name: 'share',
+        component: () => import("@/components/Share"),
+        props: true,
+    },
+    {
+        path: '/share/comparison',
+        name: 'share comparison',
+        props: true,
+    },
+    {
+        path: "/page-not-found",
+        alias: '*',
+        component: { render: (h) => h("div", ["404! Page Not Found!"]) },
+    },
 ];
 
 export default routes;

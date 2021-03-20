@@ -4,17 +4,6 @@
   </div>
 </template>
 
-<script>
-// import ShareList from '@/components/ShareList'
-export default {
-  name: 'App',
-
-  components: {
-    // ShareList
-  }
-}
-</script>
-
 <style>
 @import './assets/styles/bootstrap.min.css';
 #app {
@@ -25,6 +14,6 @@ export default {
   max-width: 1024px;
 }
 html {
-  font-size: 20px;
+  font-size: 16px;
 }
 </style>
