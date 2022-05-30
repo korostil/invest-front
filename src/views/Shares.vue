@@ -3,12 +3,12 @@
 </template>
 
 <script>
-import ShareList from "@/components/ShareList";
+import ShareList from '@/components/ShareList';
 export default {
-  name: "Shares",
+  name: 'SharesList',
   components: {
-    ShareList
-  }
+    ShareList,
+  },
 };
 </script>
 
