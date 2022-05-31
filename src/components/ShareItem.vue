@@ -24,17 +24,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.share {
-  font-size: 1rem;
-  padding: 0.5rem 1rem;
-  list-style: none;
-}
-
-.ticker {
-  margin-right: 1rem;
-  min-width: 100px;
-  text-align: right;
-}
-</style>

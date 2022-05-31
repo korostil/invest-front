@@ -84,25 +84,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.comparison {
-  display: table;
-  width: auto;
-  border-spacing: 5px;
-}
-.comparison-row {
-  display: table-row;
-  width: auto;
-  clear: both;
-}
-.comparison-row .title {
-  float: left; /* fix for  buggy browsers */
-  display: table-column;
-  width: 200px;
-}
-.comparison-row .content {
-  float: left; /* fix for  buggy browsers */
-  display: table-cell;
-}
-</style>

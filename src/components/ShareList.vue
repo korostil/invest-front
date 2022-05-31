@@ -25,18 +25,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-li {
-  border-top: 1px solid #303030;
-  padding: 5px;
-}
-li:first-child {
-  border-top: 0;
-}
-</style>
