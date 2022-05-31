@@ -1,16 +1,16 @@
 import Shares from '@/views/Shares';
-import Share from '@/components/Share';
+import ShareView from '@/components/ShareView';
 
 const routes = [
   {
-    path: '/share',
+    path: '/',
     component: Shares,
     name: 'list of shares',
   },
   {
     path: '/share/:ticker',
     name: 'share',
-    component: Share,
+    component: ShareView,
     props: true,
   },
   {

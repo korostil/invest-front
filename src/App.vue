@@ -1,17 +1,16 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
-  </div>
+  <router-view>
+    <SharesList />
+  </router-view>
 </template>
 
 <script>
-import HelloWorld from './components/ShareList.vue';
+import SharesList from './components/ShareList.vue';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld,
+    SharesList,
   },
 };
 </script>
