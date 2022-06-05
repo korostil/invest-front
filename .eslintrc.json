@@ -18,5 +18,7 @@
     "sourceType": "module"
   },
   "plugins": ["vue", "prettier"],
-  "rules": {}
+  "rules": {
+    "no-unused-vars": "off"
+  }
 }

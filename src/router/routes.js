@@ -1,26 +1,23 @@
-import Shares from '@/views/Shares';
 import ShareView from '@/components/ShareView';
+import HomePage from '@/views/HomePage';
 
 const routes = [
   {
     path: '/',
-    component: Shares,
+    component: HomePage,
     name: 'list of shares',
   },
   {
     path: '/share/:ticker',
     name: 'share',
     component: ShareView,
-    props: true,
   },
   {
     path: '/share/comparison',
     name: 'share comparison',
-    props: true,
   },
   {
-    path: '/page-not-found',
-    alias: '*',
+    path: '/:pathMatch(.*)*',
     component: { render: h => h('div', ['404! Page Not Found!']) },
   },
 ];

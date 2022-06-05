@@ -1,16 +1,7 @@
-<template>
-  <router-view>
-    <SharesList />
-  </router-view>
-</template>
-
-<script>
+<script setup>
 import SharesList from './components/ShareList.vue';
-
-export default {
-  name: 'App',
-  components: {
-    SharesList,
-  },
-};
 </script>
+
+<template>
+  <router-view />
+</template>

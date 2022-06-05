@@ -1,12 +1,9 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router';
 import routes from '@/router/routes';
 
-Vue.use(VueRouter);
-
-const router = new VueRouter({
-  mode: 'history',
-  routes: routes,
+const router = createRouter({
+  history: createWebHashHistory(),
+  routes,
 });
 
 export default router;
