@@ -1,6 +1,6 @@
 <script setup>
-import { ref } from 'vue';
 import ShareItem from '@/components/ShareItem';
+import { ref } from 'vue';
 
 const test_data = [
   { id: 1, title: 'Tesla', ticker: 'TSLA' },
