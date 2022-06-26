@@ -7,6 +7,16 @@ const search_text = ref('');
 let page = ref(1);
 let hasNextPage = ref(true);
 
+const windowData = Object.fromEntries(
+  new URL(window.location).searchParams.entries(),
+);
+if (windowData.search_text) {
+  search_text.value = windowData.search_text;
+}
+if (windowData.page) {
+  page.value = parseInt(windowData.page);
+}
+
 function filteredCompanies() {
   const start = (page.value - 1) * 2,
     end = page.value * 2;
@@ -25,6 +35,18 @@ function filteredCompanies() {
 
 watch(search_text, () => {
   page.value = 1;
+  history.pushState(
+    null,
+    document.title,
+    `${window.location.pathname}?search_text=${search_text.value}&page=${page.value}`,
+  );
+});
+watch(page, () => {
+  history.pushState(
+    null,
+    document.title,
+    `${window.location.pathname}?search_text=${search_text.value}&page=${page.value}`,
+  );
 });
 </script>
 
