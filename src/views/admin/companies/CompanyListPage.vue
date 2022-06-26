@@ -1,4 +1,19 @@
-<script setup></script>
+<script setup>
+import CompanyItem from '@/views/admin/companies/CompanyItem';
+import { ref } from 'vue';
+import { companies as test_data } from '@/store/data';
+
+const search_text = ref('');
+
+function filteredCompanies() {
+  let search_str = search_text.value.toLowerCase(),
+    companies = Object.assign([], test_data);
+
+  return companies.filter(company =>
+    company.title.toLowerCase().includes(search_str),
+  );
+}
+</script>
 
 <template>
   <div>
@@ -10,20 +25,11 @@
   </div>
   <div>
     <ul>
-      <li>
-        <router-link
-          :to="{ name: 'admin company page', params: { company: 1 } }"
-        >
-          Great company
-        </router-link>
-      </li>
-      <li>
-        <router-link
-          :to="{ name: 'admin company page', params: { company: 2 } }"
-        >
-          Another Great company
-        </router-link>
-      </li>
+      <CompanyItem
+        :company="company"
+        v-for="company of filteredCompanies()"
+        :key="company.id"
+      />
     </ul>
   </div>
   <div>

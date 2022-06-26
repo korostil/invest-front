@@ -1,18 +1,15 @@
 <script setup>
 import ShareItem from '@/components/ShareItem';
 import { ref } from 'vue';
+import { shares as test_data } from '@/store/data';
 
-const test_data = [
-  { id: 1, title: 'Tesla', ticker: 'TSLA' },
-  { id: 2, title: 'Yandex', ticker: 'YNDX' },
-  { id: 3, title: 'Yandex', ticker: 'YNDXD' },
-];
-const shares = ref(Object.assign([], test_data));
-const search_text = ref();
-function search() {
+const search_text = ref('');
+
+function filteredShares() {
   let search_str = search_text.value.toLowerCase(),
-    shares_list = Object.assign([], test_data);
-  shares.value = shares_list.filter(
+    shares = Object.assign([], test_data);
+
+  return shares.filter(
     share =>
       share.title.toLowerCase().includes(search_str) ||
       share.ticker.toLowerCase().includes(search_str),
@@ -30,7 +27,11 @@ function search() {
   </div>
   <div>
     <ul>
-      <ShareItem :share="share" v-for="share of shares" :key="share.id" />
+      <ShareItem
+        :share="share"
+        v-for="share of filteredShares()"
+        :key="share.id"
+      />
     </ul>
   </div>
 </template>
