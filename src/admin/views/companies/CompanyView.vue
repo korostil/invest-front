@@ -6,12 +6,18 @@ function getCompanyById(pk) {
   let company = companies.find(company => {
     return company.id === pk;
   });
+  if (!company) {
+    return '';
+  }
   return company.title;
 }
 </script>
 
 <template>
-  <h1>{{ getCompanyById(parseInt(this.$route.params.company)) }}</h1>
+  <h1 v-if="this.$route.params.company">
+    {{ getCompanyById(parseInt(this.$route.params.company)) }}
+  </h1>
+  <input v-else placeholder="Название" />
   <input placeholder="Описание" />
   <button>Сохранить</button>
 </template>

@@ -1,6 +1,6 @@
 import { default as AdminHomePage } from '@/admin/views/HomePage';
-import CompanyListPage from '@/admin/views/companies/CompanyListPage';
-import CompanyPage from '@/admin/views/companies/CompanyPage';
+import CompanyListPage from '@/admin/views/companies/CompanyListView';
+import CompanyPage from '@/admin/views/companies/CompanyView';
 import HomePage from '@/index/views/HomePage';
 import ShareView from '@/index/components/ShareView';
 

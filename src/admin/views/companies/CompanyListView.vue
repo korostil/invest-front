@@ -1,6 +1,6 @@
 <script setup>
 import { ref, watch } from 'vue';
-import CompanyItem from '@/admin/views/companies/CompanyItem';
+import CompanyItem from '@/admin/views/companies/CompanyItemView';
 import { companies as test_data } from '@/index/store/data';
 
 const search_text = ref('');
@@ -68,6 +68,11 @@ watch(page, () => {
     </ul>
   </div>
   <div>
+    <router-link
+      :to="{ name: 'create company page', params: { company: null } }"
+    >
+      Добавить компанию
+    </router-link>
     <button @click="page = page - 1" v-if="page > 1">Назад</button>
     <button @click="page = page + 1" v-if="hasNextPage">Вперед</button>
   </div>
