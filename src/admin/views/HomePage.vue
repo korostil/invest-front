@@ -9,5 +9,5 @@
       Companies
     </router-link>
   </div>
-  <router-view />
+  <router-view name="content" />
 </template>

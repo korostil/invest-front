@@ -1,5 +1,5 @@
 <script setup>
-import { companies as test_data } from '@/store/data';
+import { companies as test_data } from '@/index/store/data';
 
 function getCompanyById(pk) {
   let companies = Object.assign([], test_data);

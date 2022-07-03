@@ -1,5 +1,5 @@
 <script setup>
-import SharesList from '@/components/ShareList.vue';
+import SharesList from '@/index/components/ShareList.vue';
 </script>
 
 <template>

@@ -1,8 +1,8 @@
-import { default as AdminHomePage } from '@/views/admin/HomePage';
-import CompanyListPage from '@/views/admin/companies/CompanyListPage';
-import CompanyPage from '@/views/admin/companies/CompanyPage';
-import HomePage from '@/views/HomePage';
-import ShareView from '@/components/ShareView';
+import { default as AdminHomePage } from '@/admin/views/HomePage';
+import CompanyListPage from '@/admin/views/companies/CompanyListPage';
+import CompanyPage from '@/admin/views/companies/CompanyPage';
+import HomePage from '@/index/views/HomePage';
+import ShareView from '@/index/components/ShareView';
 
 const routes = [
   // Admin pages

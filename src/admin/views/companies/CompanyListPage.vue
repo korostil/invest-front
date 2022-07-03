@@ -1,7 +1,7 @@
 <script setup>
 import { ref, watch } from 'vue';
-import ShareItem from '@/components/ShareItem';
-import { shares as test_data } from '@/store/data';
+import CompanyItem from '@/admin/views/companies/CompanyItem';
+import { companies as test_data } from '@/index/store/data';
 
 const search_text = ref('');
 let page = ref(1);
@@ -17,22 +17,20 @@ if (windowData.page) {
   page.value = parseInt(windowData.page);
 }
 
-function filteredShares() {
+function filteredCompanies() {
   const start = (page.value - 1) * 2,
     end = page.value * 2;
 
   let search_str = search_text.value.toLowerCase(),
-    shares = Object.assign([], test_data);
+    companies = Object.assign([], test_data);
 
-  const filteredShares = shares.filter(
-    share =>
-      share.title.toLowerCase().includes(search_str) ||
-      share.ticker.toLowerCase().includes(search_str),
+  const filteredCompanies = companies.filter(company =>
+    company.title.toLowerCase().includes(search_str),
   );
 
-  hasNextPage.value = filteredShares.length > end;
+  hasNextPage.value = filteredCompanies.length > end;
 
-  return filteredShares.slice(start, end);
+  return filteredCompanies.slice(start, end);
 }
 
 watch(search_text, () => {
@@ -40,7 +38,7 @@ watch(search_text, () => {
   history.pushState(
     null,
     document.title,
-    `${window.location.pathname}?search_text=${search_text.value}`,
+    `${window.location.pathname}?search_text=${search_text.value}&page=${page.value}`,
   );
 });
 watch(page, () => {
@@ -62,10 +60,10 @@ watch(page, () => {
   </div>
   <div>
     <ul>
-      <ShareItem
-        :share="share"
-        v-for="share of filteredShares()"
-        :key="share.id"
+      <CompanyItem
+        :company="company"
+        v-for="company of filteredCompanies()"
+        :key="company.id"
       />
     </ul>
   </div>
