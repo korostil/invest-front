@@ -1,9 +1,9 @@
-const FinancialStatements = Object.freeze({
-  Profit: Symbol('autumn'),
-  Revenue: Symbol('summer'),
+export const FinancialStatements = Object.freeze({
+  Profit: Symbol('Profit'),
+  Revenue: Symbol('Revenue'),
 });
 
-const Sectors = Object.freeze({
+export const Sectors = Object.freeze({
   CommercialServices: Symbol('Commercial Services'),
   Communications: Symbol('Communications'),
   ConsumerDurables: Symbol('Consumer Durables'),
@@ -26,7 +26,7 @@ const Sectors = Object.freeze({
   Utilities: Symbol('Utilities'),
 });
 
-const Industries = Object.freeze({
+export const Industries = Object.freeze({
   AerospaceDefense: Symbol('Aerospace & Defense'),
   AgriculturalCommoditiesMilling: Symbol('Agricultural Commodities/Milling'),
   Airlines: Symbol('Airlines'),
