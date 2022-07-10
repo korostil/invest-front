@@ -1,11 +1,11 @@
 <script setup>
-import { ref, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
+import EmptyList from '@/admin/components/EmptyList';
 import ShareItem from '@/index/components/ShareItem';
 import { shares as test_data } from '@/index/store/data';
 
 const search_text = ref('');
 let page = ref(1);
-let hasNextPage = ref(true);
 
 const windowData = Object.fromEntries(
   new URL(window.location).searchParams.entries(),
@@ -17,23 +17,33 @@ if (windowData.page) {
   page.value = parseInt(windowData.page);
 }
 
-function filteredShares() {
-  const start = (page.value - 1) * 2,
-    end = page.value * 2;
-
+const start = computed(() => {
+  return (page.value - 1) * 2;
+});
+const end = computed(() => {
+  return page.value * 2;
+});
+const filteredShares = computed(() => {
   let search_str = search_text.value.toLowerCase(),
     shares = Object.assign([], test_data);
 
-  const filteredShares = shares.filter(
+  const foundShares = shares.filter(
     share =>
       share.title.toLowerCase().includes(search_str) ||
       share.ticker.toLowerCase().includes(search_str),
   );
 
-  hasNextPage.value = filteredShares.length > end;
-
-  return filteredShares.slice(start, end);
-}
+  return foundShares.slice(start.value, end.value);
+});
+const isShareListNotEmpty = computed(() => {
+  return filteredShares.value.length > 0;
+});
+const hasNextPage = computed(() => {
+  return filteredShares.value.length >= end.value;
+});
+const hasPreviousPage = computed(() => {
+  return page.value > 1;
+});
 
 watch(search_text, () => {
   page.value = 1;
@@ -60,17 +70,12 @@ watch(page, () => {
     />
     <button @click="search">Искать</button>
   </div>
+  <ul v-if="isShareListNotEmpty">
+    <ShareItem :share="share" v-for="share of filteredShares" :key="share.id" />
+  </ul>
+  <EmptyList v-else />
   <div>
-    <ul>
-      <ShareItem
-        :share="share"
-        v-for="share of filteredShares()"
-        :key="share.id"
-      />
-    </ul>
-  </div>
-  <div>
-    <button @click="page = page - 1" v-if="page > 1">Назад</button>
+    <button @click="page = page - 1" v-if="hasPreviousPage">Назад</button>
     <button @click="page = page + 1" v-if="hasNextPage">Вперед</button>
   </div>
 </template>

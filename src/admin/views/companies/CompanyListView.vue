@@ -1,11 +1,11 @@
 <script setup>
-import { ref, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
 import CompanyItem from '@/admin/views/companies/CompanyItemView';
+import EmptyList from '@/admin/components/EmptyList';
 import { companies as test_data } from '@/index/store/data';
 
 const search_text = ref('');
 let page = ref(1);
-let hasNextPage = ref(true);
 
 const windowData = Object.fromEntries(
   new URL(window.location).searchParams.entries(),
@@ -17,21 +17,31 @@ if (windowData.page) {
   page.value = parseInt(windowData.page);
 }
 
-function filteredCompanies() {
-  const start = (page.value - 1) * 2,
-    end = page.value * 2;
-
+const start = computed(() => {
+  return (page.value - 1) * 2;
+});
+const end = computed(() => {
+  return page.value * 2;
+});
+const filteredCompanies = computed(() => {
   let search_str = search_text.value.toLowerCase(),
     companies = Object.assign([], test_data);
 
-  const filteredCompanies = companies.filter(company =>
+  const foundCompanies = companies.filter(company =>
     company.title.toLowerCase().includes(search_str),
   );
 
-  hasNextPage.value = filteredCompanies.length > end;
-
-  return filteredCompanies.slice(start, end);
-}
+  return foundCompanies.slice(start.value, end.value);
+});
+const isCompanyListNotEmpty = computed(() => {
+  return filteredCompanies.value.length > 0;
+});
+const hasNextPage = computed(() => {
+  return filteredCompanies.value.length >= end.value;
+});
+const hasPreviousPage = computed(() => {
+  return page.value > 1;
+});
 
 watch(search_text, () => {
   page.value = 1;
@@ -58,22 +68,21 @@ watch(page, () => {
     />
     <button @click="search">Искать</button>
   </div>
-  <div>
-    <ul>
-      <CompanyItem
-        :company="company"
-        v-for="company of filteredCompanies()"
-        :key="company.id"
-      />
-    </ul>
-  </div>
+  <ul v-if="isCompanyListNotEmpty">
+    <CompanyItem
+      :company="company"
+      v-for="company of filteredCompanies"
+      :key="company.id"
+    />
+  </ul>
+  <EmptyList v-else />
   <div>
     <router-link
       :to="{ name: 'create company page', params: { company: null } }"
     >
       Добавить компанию
     </router-link>
-    <button @click="page = page - 1" v-if="page > 1">Назад</button>
+    <button @click="page = page - 1" v-if="hasPreviousPage">Назад</button>
     <button @click="page = page + 1" v-if="hasNextPage">Вперед</button>
   </div>
 </template>
