@@ -1,10 +1,11 @@
 <script setup>
-import { computed, ref, watch } from 'vue';
+import { computed, reactive, ref, watch } from 'vue';
 import EmptyList from '@/admin/components/EmptyList';
 import ShareItem from '@/index/components/ShareItem';
-import { shares as test_data } from '@/index/store/data';
+import { shares } from '@/index/store/data';
 
 const search_text = ref('');
+const test_data = reactive(shares);
 let page = ref(1);
 
 const windowData = Object.fromEntries(
@@ -24,10 +25,9 @@ const end = computed(() => {
   return page.value * 2;
 });
 const filteredShares = computed(() => {
-  let search_str = search_text.value.toLowerCase(),
-    shares = Object.assign([], test_data);
+  let search_str = search_text.value.toLowerCase();
 
-  const foundShares = shares.filter(
+  const foundShares = test_data.filter(
     share =>
       share.title.toLowerCase().includes(search_str) ||
       share.ticker.toLowerCase().includes(search_str),
@@ -71,7 +71,7 @@ watch(page, () => {
     <button @click="search">Искать</button>
   </div>
   <ul v-if="isShareListNotEmpty">
-    <ShareItem :share="share" v-for="share of filteredShares" :key="share.id" />
+    <ShareItem v-for="share of filteredShares" :share="share" :key="share.id" />
   </ul>
   <EmptyList v-else />
   <div>

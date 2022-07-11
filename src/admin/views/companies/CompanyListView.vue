@@ -1,10 +1,11 @@
 <script setup>
-import { computed, ref, watch } from 'vue';
+import { computed, reactive, ref, watch } from 'vue';
 import CompanyItem from '@/admin/views/companies/CompanyItemView';
 import EmptyList from '@/admin/components/EmptyList';
-import { companies as test_data } from '@/index/store/data';
+import { companies } from '@/index/store/data';
 
 const search_text = ref('');
+const test_data = reactive(companies);
 let page = ref(1);
 
 const windowData = Object.fromEntries(
@@ -24,13 +25,9 @@ const end = computed(() => {
   return page.value * 2;
 });
 const filteredCompanies = computed(() => {
-  let search_str = search_text.value.toLowerCase(),
-    companies = Object.assign([], test_data);
-
-  const foundCompanies = companies.filter(company =>
-    company.title.toLowerCase().includes(search_str),
+  const foundCompanies = test_data.filter(company =>
+    company.title.toLowerCase().includes(search_text.value.toLowerCase()),
   );
-
   return foundCompanies.slice(start.value, end.value);
 });
 const isCompanyListNotEmpty = computed(() => {
@@ -70,8 +67,8 @@ watch(page, () => {
   </div>
   <ul v-if="isCompanyListNotEmpty">
     <CompanyItem
-      :company="company"
       v-for="company of filteredCompanies"
+      :company="company"
       :key="company.id"
     />
   </ul>
