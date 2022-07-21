@@ -1,11 +1,11 @@
-import { default as AdminHomePage } from '@/admin/views/HomePage';
+import NavPanel from '@/admin/components/NavPanel';
 import CompanyListView from '@/admin/views/companies/CompanyListView';
 import CompanyView from '@/admin/views/companies/CompanyView';
 
 const routes = [
   {
     components: {
-      NavBar: AdminHomePage,
+      menu: NavPanel,
     },
     name: 'admin homepage',
     path: '/admin',
@@ -13,7 +13,7 @@ const routes = [
   {
     components: {
       content: CompanyListView,
-      NavBar: AdminHomePage,
+      menu: NavPanel,
     },
     name: 'admin companies page',
     path: '/admin/companies',
@@ -21,7 +21,7 @@ const routes = [
   {
     components: {
       content: CompanyView,
-      NavBar: AdminHomePage,
+      menu: NavPanel,
     },
     name: 'create company page',
     path: '/admin/companies/create',
@@ -29,7 +29,7 @@ const routes = [
   {
     components: {
       content: CompanyView,
-      NavBar: AdminHomePage,
+      menu: NavPanel,
     },
     name: 'admin company page',
     path: '/admin/companies/:company',

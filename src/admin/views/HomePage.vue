@@ -1,13 +1,7 @@
-<script setup></script>
+<script setup>
+import NavigationPanel from '@/admin/components/NavPanel';
+</script>
 
 <template>
-  <div>
-    <router-link :to="{ name: 'admin homepage' }"> Admin </router-link>
-  </div>
-  <div>
-    <router-link :to="{ name: 'admin companies page' }">
-      Companies
-    </router-link>
-  </div>
-  <router-view name="content" />
+  <NavigationPanel />
 </template>

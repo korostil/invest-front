@@ -1,6 +1,6 @@
 <script setup></script>
 
 <template>
-  <router-view name="NavBar" />
+  <router-view name="menu" />
   <router-view name="content" />
 </template>
