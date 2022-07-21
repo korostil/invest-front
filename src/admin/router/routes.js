@@ -1,6 +1,6 @@
 import NavPanel from '@/admin/components/NavPanel';
-import CompanyListView from '@/admin/views/companies/CompanyListView';
-import CompanyView from '@/admin/views/companies/CompanyView';
+import CompaniesView from '@/admin/views/CompaniesView';
+import CompanyView from '@/admin/views/CompanyView';
 
 const routes = [
   {
@@ -12,7 +12,7 @@ const routes = [
   },
   {
     components: {
-      content: CompanyListView,
+      content: CompaniesView,
       menu: NavPanel,
     },
     name: 'admin companies page',

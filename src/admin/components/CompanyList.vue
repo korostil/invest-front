@@ -1,6 +1,6 @@
 <script setup>
 import { computed, reactive, ref, watch } from 'vue';
-import CompanyItem from '@/admin/views/companies/CompanyItemView';
+import CompanyItem from '@/admin/components/CompanyItem';
 import EmptyList from '@/admin/components/EmptyList';
 import { companies } from '@/index/store/data';
 

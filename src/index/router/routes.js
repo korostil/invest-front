@@ -1,5 +1,5 @@
-import CompanyListPage from '@/admin/views/companies/CompanyListView';
-import CompanyPage from '@/admin/views/companies/CompanyView';
+import CompanyListPage from '@/admin/components/CompanyList';
+import CompanyPage from '@/admin/views/CompanyView';
 import HomePage from '@/index/views/HomePage';
 import ShareView from '@/index/components/ShareView';
 
